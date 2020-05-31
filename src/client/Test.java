@@ -2,7 +2,7 @@ package client;
 
 import javax.swing.SwingUtilities;
 
-import view.GameWindow;
+import view.GameEngineWindow;
 
 public class Test {
 
@@ -10,7 +10,7 @@ public class Test {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new GameWindow();
+				new GameEngineWindow();
 				
 			}
 		});

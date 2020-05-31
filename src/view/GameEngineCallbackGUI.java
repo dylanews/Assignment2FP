@@ -1,5 +1,7 @@
 package view;
 
-public class GameEngineCallbackGUI {
+import view.interfaces.GameEngineCallback;
+
+public class GameEngineCallbackGUI implements GameEngineCallback {
 
 }

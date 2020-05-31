@@ -4,6 +4,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import model.interfaces.GameEngine;
+import view.GameEngineWindow;
+
+@SuppressWarnings("serial")
 public class MenuBar extends JMenuBar{
 	
 	private JMenu menuMain;
@@ -16,42 +20,33 @@ public class MenuBar extends JMenuBar{
 	private JMenuItem addPlayerMenuItem;
 	private JMenuItem removePlayerMenuItem;
 	
+	@SuppressWarnings("unused")
 	private GameEngine gameEngine;
-	private MainFrame mainFrame;
+	@SuppressWarnings("unused")
+	private GameEngineWindow gameEngineWindow;
 	
-	private MenuBar(GameEngine gameEngine, MainFrame mainFrame) {
-	
+	private MenuBar(GameEngine gameEngine, GameEngineWindow gameEngineWindow) {
 	this.gameEngine = gameEngine;
-	this.mainFrame = mainFrame;
-	
-	
+	this.gameEngineWindow = gameEngineWindow;
 	// Main Menu
-	
 	menuMain = new JMenu("File");
 	exitMenuItem = new JMenuItem("Exit");
 	menuMain.add(exitMenuItem);
-	
 	// Player Menu
-	
 	menuPlayer = new JMenu("File");
 	addPlayerMenuItem = new JMenuItem("Add Player");
 	removePlayerMenuItem = new JMenuItem("Remove Player");
 	menuPlayer.add(addPlayerMenuItem);
 	menuPlayer.add(removePlayerMenuItem);
-	
 	// Dice Menu
-	
 	menuDice = new JMenu("Roller");
 	rollerRoll = new JMenuItem("RollerRoll");
 	menuDice.add(rollerRoll);
 	
-	
-	playerActionListener = new PlayerActionListener(gameEngine, MainFrame);
-	addPlayerMenuItem.addActionListener(playerActionListener);
-	removePlayerMenuItem.addActionListener(playerActionListener);
-	
+	playerListener = new PlayerListener(gameEngine, GameEngineWindow);
+	addPlayerMenuItem.addActionListener(playerListener);
+	removePlayerMenuItem.addActionListener(playerListener);
 	rollerRoll.addActionListener(new RollerRollActionListener(gameEngine, mainFrame));
-	
 	add(menuMain);
 	add(menuPlayer);
 	add(menuDice);

@@ -10,9 +10,11 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import model.interfaces.GameEngine;
+
 public class ToolBar extends JToolBar {
 		
-		private MainFrame mainFrame;
+		private GameEngineWindow gameEngineWindow;
 		private GameEngine gameEngine;
 		private JButton rollButton;
 		private JComboBox<String> playerComboBox;
@@ -21,21 +23,21 @@ public class ToolBar extends JToolBar {
 		private JButton betConfirm;
 		private JButton betCancel;
 		
-		private final String ENT_BET_STRING = "Please enter bet amount";
+		private final String ENT_BET_STRING = "Please enter the amount you would like to bet";
 		
-		public ToolBar(MainFrame mainFrame, GameEngine gameEngine) {
+		public ToolBar(GameEngineWindow gameEngineWindow, GameEngine gameEngine) {
 			
 			super("ToolBar");
 			
-			this.mainFrame = mainFrame;
+			this.gameEngineWindow = gameEngineWindow;
 			this.gameEngine = gameEngine;
 			
 			setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 			
-			rollButton = new JButton("Roll");
+			rollButton = new JButton("ROLL");
 			playerComboBox = new JComboBox<String>();
 			
-			String[] betTypes = {"Dice 1", "Dice 2", "Both"}
+			String[] betTypes = {"Dice 1", "Dice 2", "Both"};
 			
 			bet = new JTextField(ENT_BET_STRING);
 			betTypeComboBox = new JComboBox<String>(betTypes);
