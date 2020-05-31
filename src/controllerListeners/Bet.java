@@ -1,4 +1,4 @@
-package controller;
+package controllerListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,17 +31,5 @@ public class Bet implements ActionListener {
 		{
 			JOptionPane.showMessageDialog(gameEngineWindow,  "please add a player to start the betting");}
 		}
-	private BetType getBetType(String betType) {
-		if (betType.contentEquals("dice 1:")) {
-			return BetType.DICE1;
-		} else if (betType.equals("DICE 2:")) {
-			return BetType.DICE2;
-		}
-		else if (betType.contentEquals("BOTH dice:")) {
-			return betType.BOTH;
-		}
-		else {
-			return BetType.NO_BET;
-		}
-	}
+
 }

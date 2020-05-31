@@ -1,4 +1,4 @@
-package controller;
+package controllerListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,14 @@ public class RemoveBet implements ActionListener {
 		this.gameEngineWindow = gameEngineWindow;
 		this.gameEngine = gameEngine;
 	}
-	
-	//incomplete without actions
-}
+	public void actionPerformed(ActionEvent arg0) {
+		try {
+			Player playPlayer = gameEngineWindow.getPlayPlayerAsPlayer();
+			playPlayer.resetBet();
+			gameEngineWindow.getStatusBar().setFeedback("bet removed");
+			gameEngineWindow.getSummaryPanel().updateBetCancel(playPlayer);
+		} catch (NullPointerException exception) {
+			JOptionPane.showMessageDialog(gameEngineWindow, "add player");
+		}
+	}
+	}
