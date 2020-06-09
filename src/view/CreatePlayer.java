@@ -5,23 +5,28 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class CreatePlayer extends JPanel {
-	private JTextField playerNametext;
-	private JTextField playerPointsfld;
+public class CreatePlayer extends JPanel{
+	
+	private JTextField playerNameText;
+	private JTextField playerPointsText;
+	
 	public CreatePlayer() {
 		JLabel playerNameBox = new JLabel("Enter player name:");
-		playerNametext = new JTextField(30);
-		JLabel playerPoinstBox = new JLabel("Enter the amount of player points");
-		playerPointsfld = new JTextField(30);
+		playerNameText = new JTextField(30);
+		JLabel playerPointsBox = new JLabel("Enter the amount of player points");
+		playerPointsText = new JTextField(30);
 		add(playerNameBox);
-		add(playerNametext);
-		add(playerPoinstBox);
-		add(playerPointsfld);
+		add(playerNameText);
+		add(playerPointsBox);
+		add(playerPointsText);
 	}
-	public String getPlayerNameTxtFld() {
-		return playerNametext.getText();
+	
+	public String getPlayerNameText() {
+		return playerNameText.getText();
 	}
-	public String getPlayerPointsField() {
-		return playerPointsfld.getText();
+	
+	public String getPlayerPointsText() {
+		return playerPointsText.getText();
 	}
+	
 }

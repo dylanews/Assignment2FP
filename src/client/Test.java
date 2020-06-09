@@ -2,15 +2,23 @@ package client;
 
 import javax.swing.SwingUtilities;
 
-import view.GameEngineWindow;
+import model.GameEngineImpl;
+import model.interfaces.GameEngine;
+import view.component.GameEngineCallbackGUI;
+import view.GameWindow;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
+		final GameEngine gameEngine = new GameEngineImpl();
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new GameEngineWindow();
+				
+				gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(null));
+				
+				new GameWindow();
 				
 			}
 		});
