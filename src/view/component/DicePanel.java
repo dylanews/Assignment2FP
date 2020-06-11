@@ -21,19 +21,26 @@ public class DicePanel extends JPanel {
 	
 	
 	
-		int value;
+		int value1;
+		int value2;
 		Color color = Color.black;
 		private static final int SIDE = 32;
+		private static final int SIDE2 = 100;
 		
 	public DicePanel(GameEngine gameEngine, GameWindow gameWindow) {
 		
+		this.gameEngine = gameEngine;
+		this.gameWindow = gameWindow;
+		
 	}
 	
+	// Display two dice
 	 @Override
 	  public void paintComponent(Graphics g) {
 	    super.paintComponent(g);
 		g.setColor(color);
-		switch (value) {
+		g.setColor(color);
+		switch (value1) {
 	    case 1:
 	      g.fillRect(3 * SIDE, 3 * SIDE, SIDE, SIDE);
 	      break;
@@ -68,24 +75,81 @@ public class DicePanel extends JPanel {
 	      g.fillRect(5 * SIDE, 3 * SIDE, SIDE, SIDE);
 	      break;
 	    }
+		switch (value2) {
+	    case 1:
+	      g.fillRect(5 * SIDE2-128, 3 * SIDE, SIDE, SIDE);
+	      break;
+	    case 2:
+	      g.fillRect(5 * SIDE2, SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2-128, 5 * SIDE, SIDE, SIDE);
+	      break;
+	    case 3:
+	      g.fillRect(5 *SIDE2, SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2-128, 3 * SIDE, SIDE, SIDE);
+	      break;
+	    case 4:
+	      g.fillRect(5 *SIDE2-128, SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2-128, 5 * SIDE, SIDE, SIDE);
+	      break;
+	    case 5:
+	      g.fillRect(5 *SIDE2-128, SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2-128, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2-128, 3 * SIDE, SIDE, SIDE);
+	      break;
+	    case 6:
+	      g.fillRect(5 *SIDE2-128, SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2-128, 5 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 *SIDE2-128, 3 * SIDE, SIDE, SIDE);
+	      g.fillRect(5 * SIDE2, 3 * SIDE, SIDE, SIDE);
+	      break;
+	    }
 	  }
 
+	 // update both dice
 	public void updateDie(Player player, Die die) {
-		// TODO Auto-generated method stub
+		activePlayer = gameWindow.getActivePlayerAsPlayer();
+		if (player.equals(activePlayer) && die.getNumber() == 1) {
+			value1 = die1.getValue();
+		}
+
+		else if (player.equals(activePlayer) && die.getNumber() == 2) {
+			value2 = die2.getValue();
+		}
+		repaint();
 		
 	}
 
+	// update house dice
 	public void updateRollerDie(Die die) {
-		// TODO Auto-generated method stub
+		if (die.getNumber() == 1) {
+			value1 = die1.getValue();
+		}
+
+		else if (die.getNumber() == 2) {
+			value2 = die2.getValue();
+		}
+		repaint();
 		
 	}
 	
-	public void changePlayer(Player player, Die die) {
+	// change active player
+	public void changePlayer() {
 
 		activePlayer = gameWindow.getActivePlayerAsPlayer();
+		
+		System.out.println(activePlayer);
+		
 		if (activePlayer.getResult() != null) {
 			activePlayer = gameWindow.getActivePlayerAsPlayer();
-			// make the value of dice change so the repainting is correct
+			die1 = activePlayer.getResult().getDie1();
+			die2 = activePlayer.getResult().getDie2();
 			repaint();
 		} else {
 			die1 = null;

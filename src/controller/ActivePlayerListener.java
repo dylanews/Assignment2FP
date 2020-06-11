@@ -12,37 +12,45 @@ public class ActivePlayerListener implements ActionListener{
 
 	private GameEngine gameEngine;
 	private GameWindow gameWindow;
-	
+
 	public ActivePlayerListener(GameEngine gameEngine, GameWindow gameWindow) {
 		this.gameEngine = gameEngine;
 		this.gameWindow = gameWindow;
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent event) {
-		setActivePlayer(event);
+	public void actionPerformed(ActionEvent e) {
+		setActivePlayer(e);
 		updateStatusBar();
-		updateCoinPanel();
+		updateDicePanel();
+		
 	}
 	
-	private void updateCoinPanel() {
+	// update dice panel when change player
+	private void updateDicePanel() {
+		
 		if(gameWindow.getActivePlayer() != (null)) {
-			gameWindow.getDicePanel().changePlayer(null, null);
+			gameWindow.getDicePanel().changePlayer();
 		}
+		
 	}
 	
+	// set player to active player from list
 	private void setActivePlayer(ActionEvent event) {
-		@SuppressWarnings("unchecked")
 		JComboBox<String> comboBox = (JComboBox<String>) event.getSource();
 		String comboBoxSelection = (String) comboBox.getSelectedItem();
 		gameWindow.setActivePlayer(comboBoxSelection);
 	}
 	
+	// update status bar
 	private void updateStatusBar() {
-		if(gameWindow.getActivePlayer() == (null)){
+		if(gameWindow.getActivePlayer() == (null)) {
 			gameWindow.getStatusBar().setDefaultActivePlayer();
 		} else {
 			gameWindow.getStatusBar().setActivePlayer(gameWindow.getActivePlayer());
 		}
+		
 	}
+	
+
 }

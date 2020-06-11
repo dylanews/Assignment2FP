@@ -1,7 +1,6 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class EmptyInput extends Exception {
-		public EmptyInput() {
-		}
+public class EmptyInput extends Exception{
+	
 }
